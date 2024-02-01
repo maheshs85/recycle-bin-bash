@@ -22,7 +22,7 @@ function list_junk_dir {
 }
 
 function purge_junk_dir {
-  rm -ri $JUNK_DIR/*;
+  rm -rf $JUNK_DIR/{..?*,.[!.]*,*};
 }
 
 function add_junk_dir {
@@ -61,7 +61,7 @@ fi
 
 for arg
 do
-    if [ ! -f $arg ]; then
+    if [ ! -e $arg ]; then
         echo "Warning: '$arg' not found"
     else
         add_junk_dir $arg
