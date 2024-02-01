@@ -27,7 +27,7 @@ function purge_junk_dir {
 
 function add_junk_dir {
   create_junk_dir
-  mv $1 $JUNK_DIR;
+  mv "$1" $JUNK_DIR;
 }
 
 if [ $# -eq 0 ]
@@ -39,13 +39,13 @@ fi
 FLAGS=''
 while getopts ":hlp" opt
 do
-    case $opt in
-        h) FLAGS+='h' ;;
-        l) FLAGS+='l' ;;
-        p) FLAGS+='p' ;;
-        *) echo "Error: Unknown option '-$OPTARG'."; help; exit 1;;
-        ?) help; exit 1;; 
-    esac
+  case $opt in
+    h) FLAGS+='h' ;;
+    l) FLAGS+='l' ;;
+    p) FLAGS+='p' ;;
+    *) echo "Error: Unknown option '-$OPTARG'."; help; exit 1;;
+    ?) help; exit 1;; 
+  esac
 done
 
 if [[ "$FLAGS" = "h" ]]; then
@@ -59,11 +59,11 @@ elif [[ "$FLAGS" != "" ]]; then
   help; exit 1;
 fi
 
-for arg
-do
-    if [ ! -e $arg ]; then
-        echo "Warning: '$arg' not found."
+for file in "$@"
+  do
+    if [ ! -e "$file" ]; then
+        echo "Warning: "$file" not found."
     else
-        add_junk_dir "$arg"
+        add_junk_dir "$file"
     fi
-done
+  done
