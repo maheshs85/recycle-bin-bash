@@ -4,10 +4,10 @@ JUNK_DIR=~/.junk
 
 function help {
   echo "Usage: `basename $0` [-hlp] [list of files]
-   -h: Display help.
-   -l: List junked files.
-   -p: Purge all files.
-   [list of files] with no other arguments to junk those files.";
+  -h: Display help.
+  -l: List junked files.
+  -p: Purge all files.
+  [list of files] with no other arguments to junk those files.";
 }
 
 function create_junk_dir {
@@ -43,7 +43,7 @@ do
         h) FLAGS+='h' ;;
         l) FLAGS+='l' ;;
         p) FLAGS+='p' ;;
-        *) echo "Error: Unknown option '-$OPTARG'"; help; exit 1;;
+        *) echo "Error: Unknown option '-$OPTARG'."; help; exit 1;;
         ?) help; exit 1;; 
     esac
 done
@@ -62,8 +62,8 @@ fi
 for arg
 do
     if [ ! -e $arg ]; then
-        echo "Warning: '$arg' not found"
+        echo "Warning: '$arg' not found."
     else
-        add_junk_dir $arg
+        add_junk_dir "$arg"
     fi
 done
