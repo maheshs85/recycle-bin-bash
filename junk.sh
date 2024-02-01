@@ -1,13 +1,15 @@
 #!/bin/bash
 
-JUNK_DIR=~/.junk
+readonly JUNK_DIR=~/.junk
 
 function help {
-  echo "Usage: `basename $0` [-hlp] [list of files]
+cat <<EOF
+Usage: `basename $0` [-hlp] [list of files]
   -h: Display help.
   -l: List junked files.
   -p: Purge all files.
-  [list of files] with no other arguments to junk those files.";
+  [list of files] with no other arguments to junk those files.
+EOF
 }
 
 function create_junk_dir {
