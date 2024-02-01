@@ -62,7 +62,7 @@ fi
 for file in "$@"
   do
     if [ ! -e "$file" ]; then
-        echo "Warning: "$file" not found."
+        echo "Warning: '"$file"' not found."
     else
         add_junk_dir "$file"
     fi
