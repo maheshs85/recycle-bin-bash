@@ -45,7 +45,7 @@ do
     h) FLAGS+='h' ;;
     l) FLAGS+='l' ;;
     p) FLAGS+='p' ;;
-    *) echo "Error: Unknown option '-$OPTARG'."; help; exit 1;;
+    *) echo "Error: Unknown option '-$OPTARG'."; >&2 help; exit 1;;
     ?) help; exit 1;; 
   esac
 done
@@ -57,15 +57,17 @@ elif [[ "$FLAGS" = "l" ]]; then
 elif [[ "$FLAGS" = "p" ]]; then
   purge_junk_dir; exit 0;
 elif [[ "$FLAGS" != "" ]]; then
-  echo "Error: Too many options enabled."
+  echo "Error: Too many options enabled." >&2
   help; exit 1;
 fi
 
 for file in "$@"
   do
     if [ ! -e "$file" ]; then
-        echo "Warning: '"$file"' not found."
+        echo "Warning: '"$file"' not found." >&2
     else
         add_junk_dir "$file"
     fi
   done
+
+exit 0;
